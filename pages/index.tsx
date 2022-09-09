@@ -304,7 +304,7 @@ const Home: NextPage = () => {
               setNumber(num);
             }
 
-        }, 10)
+        }, 5)
 
         setIntervalID(interval);
       },

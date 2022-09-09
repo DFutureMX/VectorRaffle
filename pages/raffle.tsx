@@ -42,7 +42,7 @@ const Raffle: NextPage = () => {
 
     const [deletedFolios, setDeletedFolios] = useState<Array<string>>([]);
     const [name, setName] = useState<string>("ABRAHAM CEPEDA");
-    const [equipo, setEquipo] = useState<string>("La Liga");
+    const [equipo, setEquipo] = useState<string>("Periodiqueros");
     const [apodo, setApodo] = useState<string>("El Chino");
     const [handicap, setHandicap] = useState<number>(8.7);
 
@@ -78,7 +78,7 @@ const Raffle: NextPage = () => {
     let stop = false;
     //@ts-ignore
     let interval;
-    let final = Math.floor(Math.random() * participants.length) + (participants.length * 2);
+    let final = Math.floor(Math.random() * participants.length + 10);
 
 
     const slowInterval = (temp:Participant[]) => {
@@ -163,12 +163,8 @@ const Raffle: NextPage = () => {
             if(!stop){
                 console.log('num: ', num, " index: ", index);
                 num = num + 1;
-                if(num === (final - 5))  {
-                    console.log("slow");
-                    /* 
-                    index = index + 1;
-                    setName(temp[index].nombre);
-                    setFolio(temp[index].folio); */
+                if(num === (final - 3))  {
+                    
                     setSlow(true);
                     stop = true;
 
@@ -208,7 +204,7 @@ const Raffle: NextPage = () => {
         if (participants.length > 0) {
             localStorage.setItem("deletedNames", JSON.stringify([]));
             setState({...state, numParticipants: participants.length});
-            runInterval(50);
+            runInterval(20);
         }
 
     } ,[]);
@@ -217,7 +213,6 @@ const Raffle: NextPage = () => {
     const handleReplayClick = () => {
         //delete winner from participants
 
-        //let temp = participants.filter((participant: Participant) => participant.folio !== state.winnerFolio);
         if(localStorage.getItem("deletedNames") !== null) {
             let temp = JSON.parse(localStorage.getItem("deletedNames")!);
             temp.push(state.winnerName);
@@ -253,7 +248,7 @@ const Raffle: NextPage = () => {
         slow: {
             rotate: [0, 360], 
             transition: {
-                duration: 10,
+                duration: 6,
                 repeat: 0,
                 ease: "linear",
             }},
