@@ -9,6 +9,7 @@ import Link from 'next/link'
 import FileButton from '../components/FileButton'
 import Image from 'next/image'
 import Logo from '../public/img/ycc.png'
+import DFLogo from '../public/img/df_logo.png'
 
 /* Redux */
 import { 
@@ -95,14 +96,69 @@ const Home: NextPage = () => {
     let files = e.dataTransfer.files; //get files
   
     if (files && files.length > 0) {
-      //const existingFiles = data.fileList.map(f => f.name)
-      //files = files.filter(f => !existingFiles.includes(f.name))
       
       var file = files[0];
       console.log('file: ', file);
 
       //validate file
       if(file.type !== 'text/csv') {
+        const schema = {
+          'nombre': {
+            prop: 'nombre',
+            type: String,
+            required: true
+          },
+          'equipo': {
+            prop: 'equipo',
+            type: String,
+            required: true
+          },
+          'apodo': {
+            prop: 'apodo',
+            type: String,
+            required: true
+          },
+          'handicap': {
+            prop: 'handicap',
+            type: Number,
+            required: true
+          }
+
+        }
+
+
+        readXlsxFile(file, {schema}).then((rows) => {
+          console.log('rows: ', rows);
+
+          setState({
+            ...state,
+            fileName: file.name,
+            error: "Archivo cargado correctamente",
+            loading: true,
+            open: true,
+            severity: "success",
+            step: 1
+          });
+
+          if(rows.rows.length > 0) {
+            //@ts-ignore
+            setParticipantsWithoutFile(rows.rows);
+          }
+          //return rows;
+        }).catch((error) => {
+          console.log('error: ', error);
+          setState({
+            ...state,
+            error: 'Ocurrió un error al leer el archivo. Tiene que ser de tipo .CSV o .XLSX', 
+            loading: false,
+            open: true,
+            severity: 'error'
+          });
+          return;
+        });
+
+
+
         setState({
           ...state,
           error: 'Only CSV files are allowed',
@@ -157,11 +213,22 @@ const Home: NextPage = () => {
           type: String,
           required: true
         },
-        'folio': {
-          prop: 'folio',
+        'equipo': {
+          prop: 'equipo',
           type: String,
           required: true
+        },
+        'apodo': {
+          prop: 'apodo',
+          type: String,
+          required: true
+        },
+        'handicap': {
+          prop: 'handicap',
+          type: Number,
+          required: true
         }
+
       }
 
 
@@ -212,6 +279,8 @@ const Home: NextPage = () => {
       setParticipants(file);
     }
   };
+
+  
 
   /* Set participants data in redux */
   const setParticipants = (file: File) => {
@@ -300,7 +369,7 @@ const Home: NextPage = () => {
 
                   {/* title */}
                   <div className={styles.margin__div}>
-                    <h1 className={styles.title}>ARRASTRA Y SUELTA</h1>
+                    <h1 className={styles.title2}>ARRASTRA Y SUELTA</h1>
                     <p className={styles.text}>(.XLSX o .CSV)</p>
                   </div>
 
@@ -321,7 +390,7 @@ const Home: NextPage = () => {
 
                 {/* title */}
                 <div className={styles.margin__div}>
-                  <h1 className={styles.title}>COMENZAR RIFA</h1>
+                  <h1 className={styles.title2}>COMENZAR RIFA</h1>
                 </div>
 
                 {/* icon */}
@@ -343,8 +412,17 @@ const Home: NextPage = () => {
 
 
           {/* Logo image */}
-          <div className={styles.logo__container}>
-              <Image src={Logo} width={240} height={120}/>
+          <div className={styles.title__container}>
+              <div className={styles.logo__container}>
+                  <Image src={Logo} width={550} height={300} alt="YCC"/>
+              </div>
+              <h1 className={styles.title}>TORNEO INTERGRUPOS 2022</h1>
+          </div>
+
+          {/* DFuture Logo image */}
+          <div className={styles.df__logo__container}>
+              {/* <p>Desarrollado por:</p> */}
+              <Image src={DFLogo} width={550} height={180} alt="DFuture"/>
           </div>
 
 

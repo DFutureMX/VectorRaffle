@@ -1,5 +1,7 @@
 /* Interface participants */
 export interface Participant {
-    nombre: string;
-    folio: string;
+    nombre: string,
+    equipo: string,
+    apodo: string,
+    handicap: number
 }

@@ -32,14 +32,16 @@
   border-radius: 50%;
   text-align: center;
   font-style: italic;
+  position: relative;
+  top: 50px;
 }
 
-.title {
+.title2 {
   font-size: 50px;
   margin-bottom: -15px;
   width: 300px;
 }
-.title, .text, .icon, .icon__container p {
+.title2, .text, .icon, .icon__container p {
   //mix-blend-mode: overlay;
   opacity: 0.9;
 }
@@ -84,25 +86,39 @@
 
 /* <-------images-------> */
 /* logo */
+.title__container {
+  position: absolute;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 .logo__container {
-    position: absolute;
-    top: 40px;
-    left: 40px;
     width: 100px;
+    background: none;
+    margin-bottom: -35px;
+}
+.title {
+  background: -webkit-linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 50px;
 }
 
-/* image 1 */
-.image__container1 {
+
+
+
+/* Dfuture logo */
+.df__logo__container {
     position: absolute;
-    bottom: 40px;
-    left: 0px;
-    //width: 100px;
+    bottom: 20px;
+    left: 20px;
+    width: 150px;
 }
 
-/* image 2 */
-.image__container2 {
-    position: absolute;
-    bottom: 40px;
-    right: 0px;
-    //width: 100px;
+.df__logo__container p {
+  color: white;
+  opacity: 0.75;
+  margin-bottom: 5px;
 }

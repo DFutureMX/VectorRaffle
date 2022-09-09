@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react'
 
 /* Components */
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '../styles/Raffle.module.css'
 import Image from 'next/image'
 import Logo from '../public/img/ycc.png'
@@ -33,7 +34,7 @@ const Raffle: NextPage = () => {
     /* useState - upload */
     const [state, setState] = useState({
         winnerStatus: 0,
-        winnerFolio: "",
+        winnerName: "",
         winners: 0,
         animationIteration: 2,
         numParticipants: 0,
@@ -41,7 +42,9 @@ const Raffle: NextPage = () => {
 
     const [deletedFolios, setDeletedFolios] = useState<Array<string>>([]);
     const [name, setName] = useState<string>("ABRAHAM CEPEDA");
-    const [folio, setFolio] = useState<string>("La Liga");
+    const [equipo, setEquipo] = useState<string>("La Liga");
+    const [apodo, setApodo] = useState<string>("El Chino");
+    const [handicap, setHandicap] = useState<number>(8.7);
 
     const [intervalID, setIntervalID] = useState<number>(0);
     const [slow, setSlow] = useState<boolean>(false);
@@ -75,13 +78,14 @@ const Raffle: NextPage = () => {
     let stop = false;
     //@ts-ignore
     let interval;
-    let final = Math.floor(Math.random() * participants.length) + (participants.length * 3);
+    let final = Math.floor(Math.random() * participants.length) + (participants.length * 2);
 
 
     const slowInterval = (temp:Participant[]) => {
 
         //@ts-ignore
         if (interval) {
+            //@ts-ignore
             clearInterval(interval)
             interval = null
         }
@@ -94,7 +98,12 @@ const Raffle: NextPage = () => {
                 if(num === final) {
                     console.log("stop");
                     console.log("winners: ", state.winners);
-                    setState({...state, numParticipants: temp.length, winnerStatus: 1, winnerFolio: temp[index].folio});
+                    index = index + 1;
+                    setName(temp[index].nombre);
+                    setApodo(temp[index].apodo);
+                    setEquipo(temp[index].equipo);
+                    setHandicap(temp[index].handicap);
+                    setState({...state, numParticipants: temp.length, winnerStatus: 1, winnerName: temp[index].nombre});
                     stop = true;
                     clearInterval(intervalID);
                     //@ts-ignore
@@ -103,11 +112,15 @@ const Raffle: NextPage = () => {
                 } else if(index < (temp.length-2)) {
                     index = index + 1;
                     setName(temp[index].nombre);
-                    setFolio(temp[index].folio);
+                    setApodo(temp[index].apodo);
+                    setEquipo(temp[index].equipo);
+                    setHandicap(temp[index].handicap);
                 } else {
                     index = index + 1;
                     setName(temp[index].nombre);
-                    setFolio(temp[index].folio);
+                    setApodo(temp[index].apodo);
+                    setEquipo(temp[index].equipo);
+                    setHandicap(temp[index].handicap);
                     index = 0;
                 }
             } else {
@@ -131,9 +144,9 @@ const Raffle: NextPage = () => {
 
         let temp: Participant[] = participants;
 
-        if(localStorage.getItem("deletedFolios") !== null) {
-            let deletedFolios = JSON.parse(localStorage.getItem("deletedFolios")!);
-            temp = temp.filter((item:Participant) => !deletedFolios.includes(item.folio));
+        if(localStorage.getItem("deletedNames") !== null) {
+            let deletedNames = JSON.parse(localStorage.getItem("deletedNames")!);
+            temp = temp.filter((item:Participant) => !deletedNames.includes(item.nombre));
             console.log(temp);
         }  
         
@@ -167,11 +180,15 @@ const Raffle: NextPage = () => {
                 else if(index < (temp.length-2)) {
                     index = index + 1;
                     setName(temp[index].nombre);
-                    setFolio(temp[index].folio);
+                    setApodo(temp[index].apodo);
+                    setEquipo(temp[index].equipo);
+                    setHandicap(temp[index].handicap);
                 } else {
                     index = index + 1;
                     setName(temp[index].nombre);
-                    setFolio(temp[index].folio);
+                    setApodo(temp[index].apodo);
+                    setEquipo(temp[index].equipo);
+                    setHandicap(temp[index].handicap);
                     index = 0;
                 }
             } else {
@@ -188,30 +205,39 @@ const Raffle: NextPage = () => {
     useEffect(() => {
 
         if (participants.length > 0) {
-            localStorage.setItem("deletedFolios", JSON.stringify([]));
+            localStorage.setItem("deletedNames", JSON.stringify([]));
             setState({...state, numParticipants: participants.length});
-            runInterval(100);
+            runInterval(50);
         }
 
     } ,[]);
 
     /* Handle replay raffle without winner */
-    const handleReplayClick = async () => {
+    const handleReplayClick = () => {
         //delete winner from participants
 
         //let temp = participants.filter((participant: Participant) => participant.folio !== state.winnerFolio);
-        if(localStorage.getItem("deletedFolios") !== null) {
-            let temp = JSON.parse(localStorage.getItem("deletedFolios")!);
-            temp.push(state.winnerFolio);
-            localStorage.setItem("deletedFolios", JSON.stringify(temp));
+        if(localStorage.getItem("deletedNames") !== null) {
+            let temp = JSON.parse(localStorage.getItem("deletedNames")!);
+            temp.push(state.winnerName);
+            localStorage.setItem("deletedNames", JSON.stringify(temp));
         } else {
-            localStorage.setItem("deletedFolios", JSON.stringify([state.winnerFolio]));
+            localStorage.setItem("deletedNames", JSON.stringify([state.winnerName]));
         }
         
-        setState({...state, winnerStatus: 0, winnerFolio: "", numParticipants: state.numParticipants - 1, animationIteration: state.animationIteration + 3});
+        setState({...state, winnerStatus: 0, winnerName: "", numParticipants: state.numParticipants - 1, animationIteration: state.animationIteration + 3});
         setSlow(false);
-        runInterval(100);
+        runInterval(50);
     }
+
+    /* Handle replay raffle with all participans */
+    const handleReplayAllClick = () => {
+        localStorage.setItem("deletedNames", JSON.stringify([]));
+        setState({...state, winnerStatus: 0, winnerName: "", numParticipants: participants.length, animationIteration: state.animationIteration + 3});
+        setSlow(false);
+        runInterval(50);
+    }
+
 
 
     const variants = {
@@ -244,11 +270,6 @@ const Raffle: NextPage = () => {
         <div className={styles.overlay}>
             {/* outer circle */}
             <motion.div className={slow ? styles.outer__circle2 : styles.outer__circle} style={{animationIterationCount: !slow ? 'infinite': state.animationIteration}}
-                /* animate={{
-                    //scale: [1, 2, 2, 1, 1],
-                    rotate: [0, 360],
-                    //borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-                }} */
                 animate={slow ? "slow" : "fast"}
                 variants={variants}
                 //infinite durationn
@@ -265,25 +286,27 @@ const Raffle: NextPage = () => {
             <div className={styles.card__container}>
                 <div>
                     {/* Winner title */}
-                    {state.winnerStatus === 0 && (
+                    {state.winnerStatus === 1 && (
                         <h2 className={styles.winner__title}>¡Ganador!</h2>
                     )}
 
                     {/* name */}
                     <h1 className={styles.name}>{name.toUpperCase()}</h1>
-                    <p className={styles.nickname}>(Lechuga)</p>
+                    <p className={styles.nickname}>({apodo})</p>
 
                     {/* Folio */}
-                    <div className={styles.facts}>
-                        <div>
-                            <h2 className={styles.equipo}>{folio}</h2>
-                            <p className={styles.equipo2}>EQUIPO</p>
+                    {state.winnerStatus === 1 && (
+                        <div className={styles.facts}>
+                            <div>
+                                <h2 className={styles.equipo}>{equipo}</h2>
+                                <p className={styles.equipo2}>EQUIPO</p>
+                            </div>
+                            <div>
+                                <h2 className={styles.handi}>{handicap}</h2>
+                                <p className={styles.handi2}>HANDI</p>
+                            </div>
                         </div>
-                        <div>
-                            <h2 className={styles.handi}>8.7</h2>
-                            <p className={styles.handi2}>HANDICAP</p>
-                        </div>
-                    </div>
+                    )}
                 </div>
             </div>
 
@@ -292,27 +315,29 @@ const Raffle: NextPage = () => {
                 {/* participants number */}
                 <div className={styles.icon__container}>
                     <PersonRoundedIcon className={styles.person__icon} />
-                    <p className={styles.participants}>{state.numParticipants ? state.numParticipants : "--"}</p>
+                    <p className={styles.participants}>{state.numParticipants ? state.numParticipants : "--"}/{participants.length ? participants.length : "--"}</p>
                 </div>
 
                 {/* action buttons */}
-                {state.winnerStatus === 0 && (
+                {state.winnerStatus === 1 && (
                     <div className={styles.buttons}>
 
                         
                         {/* <Image className={styles.icon__image} src={Redo} width={35} height={35}/> */}
                         <Tooltip title="Replay without winner" placement="top">
-                            <img className={styles.icon__image} style={{marginRight: '10px'}} src="/img/redo_w.svg"/>
+                            <img onClick={handleReplayClick} className={styles.icon__image} style={{marginRight: '10px'}} src="/img/redo_w.svg" alt="Redo without winner"/>
                         </Tooltip>
 
                         {/* Replay with all participants */}
                         <Tooltip title="Replay with all" placement="top">
-                            <img className={styles.icon__image} style={{marginRight: '10px'}} src="/img/redo.svg"/>
+                            <img onClick={handleReplayAllClick} className={styles.icon__image} style={{marginRight: '10px'}} src="/img/redo.svg" alt='Redo all'/>
                         </Tooltip>
 
                         {/* Do another raffle */}
                         <Tooltip title="Do another raffle" placement="top">
-                            <img className={styles.icon__image} src="/img/another.svg"/>
+                            <Link href="/">
+                                <img className={styles.icon__image} src="/img/another.svg" alt='Another'/>
+                            </Link>
                         </Tooltip>
                     </div>    
                 )}
@@ -322,18 +347,16 @@ const Raffle: NextPage = () => {
             {/* Logo image */}
             <div className={styles.title__container}>
                 <div className={styles.logo__container}>
-                    <Image src={Logo} width={550} height={320}/>
+                    <Image src={Logo} width={550} height={300} alt="YCC"/>
                 </div>
                 <h1 className={styles.title}>TORNEO INTERGRUPOS 2022</h1>
             </div>
 
             {/* DFuture Logo image */}
             <div className={styles.df__logo__container}>
-                <p>Powered by:</p>
-                <Image src={DFLogo} width={550} height={180}/>
+                {/* <p>Desarrollado por:</p> */}
+                    <Image src={DFLogo} width={550} height={180} alt="DFuture"/>
             </div>
-
-            {/* Title */}
             
         </div>
 
