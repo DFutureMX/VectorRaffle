@@ -1,0 +1,28 @@
+/* File button */
+.input {
+    opacity: 0;
+    width: 0px;
+}
+
+.button {
+    margin: auto;
+    font-size: 15px;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    background: white;
+    border: none;
+    cursor: pointer;
+    transition: transform 450ms;
+}
+.button:hover {
+    transform: scale(1.08)
+}
+
+.text {
+    margin: auto;
+    line-height: 25px;
+    font-size: 22px;
+    color: rgb(47 174 85);
+    font-style: italic;
+}

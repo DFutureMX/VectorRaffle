@@ -22,7 +22,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
+  background: linear-gradient(rgb(23 71 4 / 75%), rgb(5 31 2 / 75%));
 }
 
 /* outer circle */
@@ -32,33 +32,19 @@
     border-radius: 50%;
     background: none;
     position: absolute;
-    //top: 50%;
-    //left: 50%;
-    //transform: translate(-50%, -50%);
     z-index: 0;
     border: 0.2rem solid #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    //-webkit-animation: spin 10s linear 0s infinite;
     box-shadow:
             0 0 .2rem #fff,
             inset 0 0 .2rem #fff,
-            0 0 1rem #08f,
-            inset 0 0 1rem #08f,
-            0 0 1rem #08f,
-            inset 0 0 1rem #08f
+            0 0 1rem #12d8ae,
+            inset 0 0 1rem #12d8ae,
+            0 0 1rem #12d8ae,
+            inset 0 0 1rem #12d8ae
 }
-.outer__circle {
-  //-webkit-animation: spin 500ms linear 0s infinite;
-}
-.outer__circle2 {
-  //top: 50%;
-  //left: 50%;
-  //-webkit-animation: spin 10s linear 0s;
-  //animation-iteration-count: 3;
-}
-
 .ball {
     position: absolute;
     top: -25px;
@@ -70,23 +56,13 @@
     filter: blur(10px);
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0);
-  }
-  to{
-    transform: rotate(359deg);
-  }
-}
-
-
 /* inner circle */
 .circle {
   width: 425px;
   height: 425px;
   border-radius: 50%;
   //background: linear-gradient(90deg, #EB2D5F 0%, #0E33DC 100%);
-  background: linear-gradient(242.6deg, rgba(27, 93, 193, 0.6) 14.66%, rgba(76, 139, 214, 0.6) 49.26%, rgba(36, 107, 214, 0.6) 82.48%);
+  background: linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -109,14 +85,15 @@
     box-shadow:
             0 0 .5rem #fff,
             inset 0 0 .5rem #fff,
-            0 0 1rem #08f,
-            inset 0 0 2rem #08f,
-            0 0 1rem #08f,
-            inset 0 0 2rem #08f;
+            0 0 1rem #12d8ae,
+            inset 0 0 2rem #12d8ae,
+            0 0 1rem #12d8ae,
+            inset 0 0 2rem #12d8ae;
     //box-shadow: -10px 10px 50px 10px rgba(63, 59, 234, 0.25), 10px -10px 50px 10px rgba(241, 44, 115, 0.5), inset 0px 39px 55px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF, inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 95px 100px -48px rgba(202, 204, 255, 0.3), inset 0px 4px 16px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
     //backdrop-filter: blur(100px);
     /* Note: backdrop-filter has minimal browser support */
-    background: linear-gradient(180deg, rgba(42, 69, 213, 0.2) 0%, rgba(42, 69, 213, 0.9) 30.54%, #0C2296 67.59%, rgba(42, 69, 213, 0.2) 100%);
+    //background: linear-gradient(180deg, rgba(42, 69, 213, 0.2) 0%, rgba(42, 69, 213, 0.9) 30.54%, #0C2296 67.59%, rgba(42, 69, 213, 0.2) 100%);
+    background: linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
     border-radius: 10px;
     text-align: center;
 }
@@ -126,7 +103,7 @@
     text-shadow: 0 0 1rem #000;
 }
 
-.name, .folio, .folio2 {
+.name, .equipo, .equipo2, .nickname, .handi, .handi2 {
     //mix-blend-mode: overlay;
     opacity: 0.7;
     font-style: italic;
@@ -134,21 +111,33 @@
 }
 .name {
     font-size: 35px;
+    margin-bottom: -20px;
 }
-.folio {
+.nickname {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.equipo, .handi {
     font-size: 35px;
     margin-bottom: -10px;
 }
-.folio2 {
+.equipo2, .handi2 {
     font-size: 15px;
+}
+.facts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
 }
 
 
 /* actions container */
 .actions__container {
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
     width: 650px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -182,29 +171,51 @@
 
 .buttons {
   margin-left: 100px;
+  height: 35px;
+}
+
+.icon__image {
+  cursor: pointer;
+  width: 35px;
+  opacity: 0.85;
+  transition: transform 450ms;
+}
+.icon__image:hover { 
+  transform: scale(1.08);
 }
 
 /* <-------images-------> */
 /* logo */
+.title__container {
+  position: absolute;
+  top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .logo__container {
+    width: 150px;
+    background: none;
+    margin-right: 35px;
+}
+.title {
+  color: white;
+  font-weight: bold;
+}
+
+
+
+
+/* Dfuture logo */
+.df__logo__container {
     position: absolute;
-    top: 40px;
+    bottom: 40px;
     left: 40px;
-    width: 100px;
+    width: 150px;
 }
 
-/* image 1 */
-.image__container1 {
-    position: absolute;
-    bottom: 40px;
-    left: 0px;
-    //width: 100px;
-}
-
-/* image 2 */
-.image__container2 {
-    position: absolute;
-    bottom: 40px;
-    right: 0px;
-    //width: 100px;
+.df__logo__container p {
+  color: white;
+  opacity: 0.5;
+  margin-bottom: 5px;
 }

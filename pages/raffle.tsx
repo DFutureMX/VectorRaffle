@@ -7,10 +7,8 @@ import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Raffle.module.css'
 import Image from 'next/image'
-import Logo from '../public/img/mobil_logo.png'
-import Image1 from '../public/img/mobil1.png'
-import Image2 from '../public/img/mobil2.png'
-
+import Logo from '../public/img/ycc.png'
+import DFLogo from '../public/img/df_logo.png'
 
 /* Redux */
 import { 
@@ -42,8 +40,8 @@ const Raffle: NextPage = () => {
     });
 
     const [deletedFolios, setDeletedFolios] = useState<Array<string>>([]);
-    const [name, setName] = useState<string>("--");
-    const [folio, setFolio] = useState<string>("--");
+    const [name, setName] = useState<string>("ABRAHAM CEPEDA");
+    const [folio, setFolio] = useState<string>("La Liga");
 
     const [intervalID, setIntervalID] = useState<number>(0);
     const [slow, setSlow] = useState<boolean>(false);
@@ -267,16 +265,25 @@ const Raffle: NextPage = () => {
             <div className={styles.card__container}>
                 <div>
                     {/* Winner title */}
-                    {state.winnerStatus === 1 && (
+                    {state.winnerStatus === 0 && (
                         <h2 className={styles.winner__title}>¡Ganador!</h2>
                     )}
 
                     {/* name */}
                     <h1 className={styles.name}>{name.toUpperCase()}</h1>
+                    <p className={styles.nickname}>(Lechuga)</p>
 
                     {/* Folio */}
-                    <h2 className={styles.folio}>{folio}</h2>
-                    <p className={styles.folio2}>FOLIO</p>
+                    <div className={styles.facts}>
+                        <div>
+                            <h2 className={styles.equipo}>{folio}</h2>
+                            <p className={styles.equipo2}>EQUIPO</p>
+                        </div>
+                        <div>
+                            <h2 className={styles.handi}>8.7</h2>
+                            <p className={styles.handi2}>HANDICAP</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -289,21 +296,23 @@ const Raffle: NextPage = () => {
                 </div>
 
                 {/* action buttons */}
-                {state.winnerStatus === 1 && (
+                {state.winnerStatus === 0 && (
                     <div className={styles.buttons}>
 
-                        {/* Replay deleting winner */}
+                        
+                        {/* <Image className={styles.icon__image} src={Redo} width={35} height={35}/> */}
                         <Tooltip title="Replay without winner" placement="top">
-                            <IconButton onClick={handleReplayClick}>
-                                <ReplayCircleFilledRoundedIcon className={styles.icon} />
-                            </IconButton>
+                            <img className={styles.icon__image} style={{marginRight: '10px'}} src="/img/redo_w.svg"/>
                         </Tooltip>
 
-                        {/* Do anothe raffle */}
-                        <Tooltip title="Do another" placement="top">
-                            <IconButton>
-                                <ReplayCircleFilledRoundedIcon className={styles.icon} />
-                            </IconButton>
+                        {/* Replay with all participants */}
+                        <Tooltip title="Replay with all" placement="top">
+                            <img className={styles.icon__image} style={{marginRight: '10px'}} src="/img/redo.svg"/>
+                        </Tooltip>
+
+                        {/* Do another raffle */}
+                        <Tooltip title="Do another raffle" placement="top">
+                            <img className={styles.icon__image} src="/img/another.svg"/>
                         </Tooltip>
                     </div>    
                 )}
@@ -311,19 +320,21 @@ const Raffle: NextPage = () => {
             </div>
 
             {/* Logo image */}
-            <div className={styles.logo__container}>
-                <Image src={Logo} width={100} height={30}/>
+            <div className={styles.title__container}>
+                <div className={styles.logo__container}>
+                    <Image src={Logo} width={550} height={320}/>
+                </div>
+                <h1 className={styles.title}>TORNEO INTERGRUPOS 2022</h1>
             </div>
 
-            {/* Image 1 */}
-            <div className={styles.image__container1}>
-                <Image src={Image1} width={400} height={200}/>
+            {/* DFuture Logo image */}
+            <div className={styles.df__logo__container}>
+                <p>Powered by:</p>
+                <Image src={DFLogo} width={550} height={180}/>
             </div>
 
-            {/* Image 2 */}
-            <div className={styles.image__container2}>
-                <Image src={Image2} width={300} height={200}/>
-            </div>
+            {/* Title */}
+            
         </div>
 
       </main>

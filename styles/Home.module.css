@@ -16,7 +16,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
+  background: linear-gradient(rgb(23 71 4 / 75%), rgb(5 31 2 / 75%));
 }
 
 .upload__drop {
@@ -28,11 +28,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: linear-gradient(170.9deg, rgba(52, 150, 240, 0.5) 5.73%, rgba(14, 51, 220, 0.8) 33.09%, rgba(20, 62, 220, 0.8) 68.37%, rgba(62, 136, 222, 0.5) 90.02%);
-  //background: rgba(255, 255, 255, 0.01);
-  //box-shadow: -10px 10px 50px 10px rgba(63, 59, 234, 0.25), 10px -10px 50px 10px rgba(241, 44, 115, 0.5), inset 0px 39px 55px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF, inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 95px 100px -48px rgba(202, 204, 255, 0.3), inset 0px 4px 16px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
-  //backdrop-filter: blur(100px);
-  /* Note: backdrop-filter has minimal browser support */
+  background: linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
   border-radius: 50%;
   text-align: center;
   font-style: italic;
@@ -69,7 +65,7 @@
 
 .start__button {
   padding: 10px 80px;
-  background: linear-gradient(90deg, #EB2D5F 0%, #8A374D 98.96%);
+  background: white;
   border-radius: 10px;
   border: none;
   cursor: pointer;
@@ -79,9 +75,10 @@
   transform: scale(1.1);
 }
 .start__button p {
-  mix-blend-mode: overlay;
+  //mix-blend-mode: overlay;
   linea-height: 15px;
   font-size: 30px;
+  color: rgb(47 174 85);
 }
 
 
