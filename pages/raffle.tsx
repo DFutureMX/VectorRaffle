@@ -137,6 +137,7 @@ const Raffle: NextPage = () => {
     const runInterval = (time:number) => {
         //@ts-ignore
         if (interval) {
+            //@ts-ignore
             clearInterval(interval)
             interval = null
         }
