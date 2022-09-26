@@ -50,7 +50,6 @@ const Raffle: NextPage = () => {
     const [slow, setSlow] = useState<boolean>(false);
 
     /* Redux */
-    const dispatch = useAppDispatch(); //function that allows to trigger actions that update the redux state
     const participants = useAppSelector(selectParticipants) //function that allows to get the Participants from the redux state
 
 
@@ -128,7 +127,7 @@ const Raffle: NextPage = () => {
                 clearInterval(interval);
             }
 
-        }, 2000)
+        }, 1000)
 
         //@ts-ignore
         setIntervalID(interval);
@@ -148,20 +147,14 @@ const Raffle: NextPage = () => {
         if(localStorage.getItem("deletedNames") !== null) {
             let deletedNames = JSON.parse(localStorage.getItem("deletedNames")!);
             temp = temp.filter((item:Participant) => !deletedNames.includes(item.nombre));
-            console.log(temp);
         }  
         
-        
-
         //@ts-ignore
         temp = shuffle(temp);
-        //let temp: Participant[] = participants;
-        console.log("time: ", time);
        
 
         interval = setInterval(() => {
             if(!stop){
-                console.log('num: ', num, " index: ", index);
                 num = num + 1;
                 if(num === (final - 3))  {
                     
@@ -204,7 +197,7 @@ const Raffle: NextPage = () => {
         if (participants.length > 0) {
             localStorage.setItem("deletedNames", JSON.stringify([]));
             setState({...state, numParticipants: participants.length});
-            runInterval(20);
+            runInterval(10);
         }
 
     } ,[]);
@@ -223,7 +216,7 @@ const Raffle: NextPage = () => {
         
         setState({...state, winnerStatus: 0, winnerName: "", numParticipants: state.numParticipants - 1, animationIteration: state.animationIteration + 3});
         setSlow(false);
-        runInterval(50);
+        runInterval(10);
     }
 
     /* Handle replay raffle with all participans */
@@ -231,7 +224,7 @@ const Raffle: NextPage = () => {
         localStorage.setItem("deletedNames", JSON.stringify([]));
         setState({...state, winnerStatus: 0, winnerName: "", numParticipants: participants.length, animationIteration: state.animationIteration + 3});
         setSlow(false);
-        runInterval(50);
+        runInterval(10);
     }
 
 
@@ -248,7 +241,7 @@ const Raffle: NextPage = () => {
         slow: {
             rotate: [0, 360], 
             transition: {
-                duration: 6,
+                duration: 3,
                 repeat: 0,
                 ease: "linear",
             }},
