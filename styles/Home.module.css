@@ -89,14 +89,16 @@
 .title__container {
   position: absolute;
   top: 10px;
+  width: 100%;
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 0 40px;
 }
 .logo__container {
     width: 100px;
     background: none;
-    margin-bottom: -35px;
 }
 .title {
   background: -webkit-linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
@@ -121,4 +123,13 @@
   color: white;
   opacity: 0.75;
   margin-bottom: 5px;
+}
+
+
+/* urent logo */
+.urent__logo__container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
 }

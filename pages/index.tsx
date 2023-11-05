@@ -8,8 +8,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 import FileButton from '../components/FileButton'
 import Image from 'next/image'
-import Logo from '../public/img/ycc.png'
+import Logo from '../public/img/inter.svg'
 import DFLogo from '../public/img/df_logo.png'
+import URent from '../public/img/urent.svg'
 
 /* Redux */
 import { 
@@ -414,9 +415,9 @@ const Home: NextPage = () => {
           {/* Logo image */}
           <div className={styles.title__container}>
               <div className={styles.logo__container}>
-                  <Image src={Logo} width={550} height={300} alt="YCC"/>
+                  <Image src={Logo} width={213} height={200} alt="YCC"/>
               </div>
-              <h1 className={styles.title}>TORNEO INTERGRUPOS 2022</h1>
+              <h1 className={styles.title}>TORNEO INTERGRUPOS 2023</h1>
           </div>
 
           {/* DFuture Logo image */}
@@ -425,6 +426,10 @@ const Home: NextPage = () => {
               <Image src={DFLogo} width={550} height={180} alt="DFuture"/>
           </div>
 
+          {/* Urent Logo image */}
+          <div className={styles.urent__logo__container}>
+              <Image src={URent} width={550} height={180} alt="URent"/>
+          </div>
 
         </div>
       </main>
