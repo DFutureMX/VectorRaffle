@@ -16,7 +16,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: linear-gradient(rgb(23 71 4 / 75%), rgb(5 31 2 / 75%));
+  background: linear-gradient(hsl(242deg 88.4% 45.3% / 45%), hsl(11deg 100% 52.2% / 41%));
 }
 
 .upload__drop {
@@ -28,7 +28,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
+  background: linear-gradient(135deg, hsl(11deg 100% 52% / 20%) 5.73%, hsl(11deg 100% 52% / 90%) 33.09%, hsl(242deg 88% 56% / 90%) 68.37%, hsl(242deg 88% 45% / 20%) 90.02%);
   border-radius: 50%;
   text-align: center;
   font-style: italic;
@@ -80,7 +80,7 @@
   //mix-blend-mode: overlay;
   linea-height: 15px;
   font-size: 30px;
-  color: rgb(47 174 85);
+  color: #FD4E00;
 }
 
 
@@ -101,9 +101,10 @@
     background: none;
 }
 .title {
-  background: -webkit-linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
+  /* background: -webkit-linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: #FD4E00;
   font-weight: bold;
   font-size: 50px;
 }

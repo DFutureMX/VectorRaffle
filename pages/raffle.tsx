@@ -8,7 +8,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../styles/Raffle.module.css'
 import Image from 'next/image'
-import Logo from '../public/img/inter.svg'
+import Logo from '../public/img/vector.svg'
 import DFLogo from '../public/img/df_logo.png'
 import URent from '../public/img/urent.svg'
 
@@ -41,11 +41,7 @@ const Raffle: NextPage = () => {
         numParticipants: 0,
     });
 
-    const [deletedFolios, setDeletedFolios] = useState<Array<string>>([]);
     const [name, setName] = useState<string>("ABRAHAM CEPEDA");
-    const [equipo, setEquipo] = useState<string>("Periodiqueros");
-    const [apodo, setApodo] = useState<string>("El Chino");
-    const [handicap, setHandicap] = useState<number>(8.7);
 
     const [intervalID, setIntervalID] = useState<number>(0);
     const [slow, setSlow] = useState<boolean>(false);
@@ -100,9 +96,6 @@ const Raffle: NextPage = () => {
                     console.log("winners: ", state.winners);
                     index = index + 1;
                     setName(temp[index].nombre);
-                    setApodo(temp[index].apodo);
-                    setEquipo(temp[index].equipo);
-                    setHandicap(temp[index].handicap);
                     setState({...state, numParticipants: temp.length, winnerStatus: 1, winnerName: temp[index].nombre});
                     stop = true;
                     clearInterval(intervalID);
@@ -112,15 +105,8 @@ const Raffle: NextPage = () => {
                 } else if(index < (temp.length-2)) {
                     index = index + 1;
                     setName(temp[index].nombre);
-                    setApodo(temp[index].apodo);
-                    setEquipo(temp[index].equipo);
-                    setHandicap(temp[index].handicap);
                 } else {
                     index = index + 1;
-                    setName(temp[index].nombre);
-                    setApodo(temp[index].apodo);
-                    setEquipo(temp[index].equipo);
-                    setHandicap(temp[index].handicap);
                     index = 0;
                 }
             } else {
@@ -171,15 +157,9 @@ const Raffle: NextPage = () => {
                 else if(index < (temp.length-2)) {
                     index = index + 1;
                     setName(temp[index].nombre);
-                    setApodo(temp[index].apodo);
-                    setEquipo(temp[index].equipo);
-                    setHandicap(temp[index].handicap);
                 } else {
                     index = index + 1;
                     setName(temp[index].nombre);
-                    setApodo(temp[index].apodo);
-                    setEquipo(temp[index].equipo);
-                    setHandicap(temp[index].handicap);
                     index = 0;
                 }
             } else {
@@ -282,21 +262,6 @@ const Raffle: NextPage = () => {
 
                     {/* name */}
                     <h1 className={styles.name}>{name.toUpperCase()}</h1>
-                    <p className={styles.nickname}>({apodo})</p>
-
-                    {/* Folio */}
-                    {state.winnerStatus === 1 && (
-                        <div className={styles.facts}>
-                            <div>
-                                <h2 className={styles.equipo}>{equipo}</h2>
-                                <p className={styles.equipo2}>EQUIPO</p>
-                            </div>
-                            <div>
-                                <h2 className={styles.handi}>{handicap}</h2>
-                                <p className={styles.handi2}>HANDI</p>
-                            </div>
-                        </div>
-                    )}
                 </div>
             </div>
 
@@ -337,19 +302,9 @@ const Raffle: NextPage = () => {
             {/* Logo image */}
             <div className={styles.title__container}>
                 <div className={styles.logo__container}>
-                    <Image src={Logo} width={213} height={200} alt="YCC"/>
+                    <Image src={Logo} width={150} height={100} alt="Vector"/>
                 </div>
-                <h1 className={styles.title}>TORNEO INTERGRUPOS 2023</h1>
-            </div>
-
-            {/* DFuture Logo image */}
-            <div className={styles.df__logo__container}>
-                <Image src={DFLogo} width={550} height={180} alt="DFuture"/>
-            </div>
-            
-            {/* Urent Logo image */}
-            <div className={styles.urent__logo__container}>
-                <Image src={URent} width={550} height={180} alt="URent"/>
+                <h1 className={styles.title}>RIFA NAVIDEÑA VECTOR 2023</h1>
             </div>
         </div>
 

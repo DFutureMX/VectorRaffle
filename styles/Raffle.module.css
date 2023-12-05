@@ -22,7 +22,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: linear-gradient(rgb(23 71 4 / 75%), rgb(5 31 2 / 75%));
+  background: linear-gradient(hsl(242deg 88.4% 45.3% / 45%), hsl(11deg 100% 52.2% / 41%));
 }
 
 /* outer circle */
@@ -40,10 +40,10 @@
     box-shadow:
             0 0 .2rem #fff,
             inset 0 0 .2rem #fff,
-            0 0 1rem #12d8ae,
-            inset 0 0 1rem #12d8ae,
-            0 0 1rem #12d8ae,
-            inset 0 0 1rem #12d8ae
+            0 0 1rem #FD4E00,
+            inset 0 0 1rem #FD4E00,
+            0 0 1rem #FD4E00,
+            inset 0 0 1rem #FD4E00
 }
 .ball {
     position: absolute;
@@ -62,7 +62,7 @@
   height: 425px;
   border-radius: 50%;
   //background: linear-gradient(90deg, #EB2D5F 0%, #0E33DC 100%);
-  background: linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
+  background: linear-gradient(135deg, hsl(11deg 100% 52% / 20%) 5.73%, hsl(11deg 100% 52% / 90%) 33.09%, hsl(242deg 88% 56% / 90%) 68.37%, hsl(242deg 88% 45% / 20%) 90.02%);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -85,15 +85,15 @@
     box-shadow:
             0 0 .5rem #fff,
             inset 0 0 .5rem #fff,
-            0 0 1rem #12d8ae,
-            inset 0 0 2rem #12d8ae,
-            0 0 1rem #12d8ae,
-            inset 0 0 2rem #12d8ae;
+            0 0 1rem #FD4E00,
+            inset 0 0 2rem #FD4E00,
+            0 0 1rem #FD4E00,
+            inset 0 0 2rem #FD4E00;
     //box-shadow: -10px 10px 50px 10px rgba(63, 59, 234, 0.25), 10px -10px 50px 10px rgba(241, 44, 115, 0.5), inset 0px 39px 55px -36px rgba(255, 255, 255, 0.5), inset 0px 7px 11px -4px #FFFFFF, inset 0px -82px 68px -64px rgba(96, 68, 144, 0.3), inset 0px 95px 100px -48px rgba(202, 204, 255, 0.3), inset 0px 4px 16px rgba(154, 146, 210, 0.3), inset 0px 1px 0px rgba(227, 222, 255, 0.2);
     //backdrop-filter: blur(100px);
     /* Note: backdrop-filter has minimal browser support */
     //background: linear-gradient(180deg, rgba(42, 69, 213, 0.2) 0%, rgba(42, 69, 213, 0.9) 30.54%, #0C2296 67.59%, rgba(42, 69, 213, 0.2) 100%);
-    background: linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
+    background: linear-gradient(135deg, hsl(11deg 100% 52% / 20%) 5.73%, hsl(11deg 100% 52% / 90%) 33.09%, hsl(242deg 88% 56% / 90%) 68.37%, hsl(242deg 88% 45% / 20%) 90.02%);
     border-radius: 10px;
     text-align: center;
 }
@@ -198,9 +198,10 @@
     margin-bottom: -35px;
 }
 .title {
-  background: -webkit-linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
+  /* background: -webkit-linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: #FD4E00;
   font-weight: bold;
   font-size: 50px;
 }
