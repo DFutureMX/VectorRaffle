@@ -302,8 +302,8 @@ const Raffle: NextPage = () => {
             {/* Logo image */}
             <div className={styles.title__container}>
                 <div className={styles.logo__container}>
-                    <Image src={Logo} width={150} height={100} alt="Vector"/>
-                </div>
+                  <Image src={Logo} width={100} height={80} alt="Vector"/>
+              </div>
                 <h1 className={styles.title}>RIFA NAVIDEÑA VECTOR 2023</h1>
             </div>
         </div>
