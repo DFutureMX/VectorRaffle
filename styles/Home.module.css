@@ -21,8 +21,8 @@
 
 .upload__drop {
   z-index: 10;
-  width: 700px;
-  height: 700px;
+  width: 600px;
+  height: 600px;
   padding: 30px;
   display: flex;
   justify-content: center;
@@ -78,7 +78,7 @@
 }
 .start__button p {
   //mix-blend-mode: overlay;
-  linea-height: 15px;
+  linea-height: 10px;
   font-size: 30px;
   color: #FD4E00;
 }
@@ -101,36 +101,57 @@
     background: none;
 }
 .title {
-  /* background: -webkit-linear-gradient(135deg, rgb(73 151 201 / 50%) 5.73%, rgb(28 166 174 / 80%) 33.09%, rgb(24 188 54 / 80%) 68.37%, rgb(61 237 147 / 50%) 90.02%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
   color: #FD4E00;
   font-weight: bold;
   font-size: 40px;
 }
 
 
-
-
-/* Dfuture logo */
-.df__logo__container {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    width: 150px;
+/* <-------responsive-------> */
+@media screen and (max-width: 768px) {
+  .upload__drop {
+    width: 400px;
+    height: 400px;
+  }
+  .title2 {
+    font-size: 30px;
+  }
+  .icon {
+    font-size: 60px !important;
+  }
+  .icon__container p {
+    font-size: 50px;
+  }
+  .start__button p {
+    font-size: 20px;
+  }
+  .title {
+    font-size: 20px;
+    margin-left: 10px;
+  }
 }
 
-.df__logo__container p {
-  color: white;
-  opacity: 0.75;
-  margin-bottom: 5px;
-}
-
-
-/* urent logo */
-.urent__logo__container {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 150px;
+@media screen and (max-width: 1280px) {
+  .upload__drop {
+    width: 450px;
+    height: 450px;
+  }
+  .title2 {
+    font-size: 40px;
+  }
+  .icon {
+    font-size: 80px !important;
+  }
+  .icon__container p {
+    font-size: 60px;
+  }
+  .start__button {
+    padding: 0px 20px;
+  }
+  .start__button p {
+    font-size: 20px;
+  }
+  .title {
+    font-size: 35px;
+  }
 }

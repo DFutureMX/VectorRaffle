@@ -9,22 +9,14 @@ import Link from 'next/link'
 import styles from '../styles/Raffle.module.css'
 import Image from 'next/image'
 import Logo from '../public/img/vector.svg'
-import DFLogo from '../public/img/df_logo.png'
-import URent from '../public/img/urent.svg'
-
 /* Redux */
-import { 
-  setReduxParticipants,
-} from "../redux/actions"
 import { selectParticipants } from "../redux/states/participants/reducer"
-import { useAppSelector, useAppDispatch } from '../redux/hooks'
+import { useAppSelector } from '../redux/hooks'
 import { Participant } from '../redux/states/participants/interfaces'
 
 /* Material UI */
-import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
-import ReplayCircleFilledRoundedIcon from '@mui/icons-material/ReplayCircleFilledRounded';
 
 
 /* Motion */
@@ -89,14 +81,17 @@ const Raffle: NextPage = () => {
         
         interval = setInterval(() => {
             if(!stop){
-                console.log('numm: ', num, " index: ", index);
                 num = num + 1;
                 if(num === final) {
-                    console.log("stop");
-                    console.log("winners: ", state.winners);
                     index = index + 1;
-                    setName(temp[index].nombre);
-                    setState({...state, numParticipants: temp.length, winnerStatus: 1, winnerName: temp[index].nombre});
+                    if(temp.length === 1) {
+                        setName(temp[0].nombre);
+                        setState({...state, numParticipants: temp.length, winnerStatus: 1, winnerName: temp[0].nombre});
+                    } else {
+                        setName(temp[index].nombre);
+                        setState({...state, numParticipants: temp.length, winnerStatus: 1, winnerName: temp[index].nombre});
+                    }
+                    
                     stop = true;
                     clearInterval(intervalID);
                     //@ts-ignore
@@ -144,7 +139,6 @@ const Raffle: NextPage = () => {
             if(!stop){
                 num = num + 1;
                 if(num === (final - 3))  {
-                    
                     setSlow(true);
                     stop = true;
 
@@ -153,8 +147,11 @@ const Raffle: NextPage = () => {
                     clearInterval(interval);
                     interval = null;
                     slowInterval(temp);
-                }
-                else if(index < (temp.length-2)) {
+                } else if(temp.length === 1) {
+                    index = index + 1;
+                    setName(temp[0].nombre);
+                    setState({...state, numParticipants: temp.length, winnerStatus: 1, winnerName: temp[0].nombre});
+                } else if(index < (temp.length-2)) {
                     index = index + 1;
                     setName(temp[index].nombre);
                 } else {
@@ -302,7 +299,7 @@ const Raffle: NextPage = () => {
             {/* Logo image */}
             <div className={styles.title__container}>
                 <div className={styles.logo__container}>
-                  <Image src={Logo} width={100} height={80} alt="Vector"/>
+                  <Image src={Logo} width={80} height={60} alt="Vector"/>
               </div>
                 <h1 className={styles.title}>RIFA NAVIDEÑA VECTOR 2023</h1>
             </div>
